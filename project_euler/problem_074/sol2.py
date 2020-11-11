@@ -39,15 +39,14 @@ def factorial(a: int) -> int:
     # The case of 0! is handled separately
     if a == 0:
         return 1
-    else:
-        # use a temporary support variable to store the computation
-        temporary_computation = 1
+    # use a temporary support variable to store the computation
+    temporary_computation = 1
 
-        while a > 0:
-            temporary_computation *= a
-            a -= 1
+    while a > 0:
+        temporary_computation *= a
+        a -= 1
 
-        return temporary_computation
+    return temporary_computation
 
 
 def factorial_sum(a: int) -> int:
@@ -94,8 +93,9 @@ def solution(chain_length: int = 60, number_limit: int = 1000000) -> int:
         """ Stop computing the chain when you find a repeating item
             or the length it greater then the desired one.
         """
-        while not (new_chain_element in chain_list) and (
-            len(chain_list) <= chain_length
+        while (
+            new_chain_element not in chain_list
+            and len(chain_list) <= chain_length
         ):
             chain_list += [new_chain_element]
 

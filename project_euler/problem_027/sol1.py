@@ -66,8 +66,7 @@ def solution(a_limit: int = 1000, b_limit: int = 1000) -> int:
                     n += 1
                 if count > longest[0]:
                     longest = [count, a, b]
-    ans = longest[1] * longest[2]
-    return ans
+    return longest[1] * longest[2]
 
 
 if __name__ == "__main__":

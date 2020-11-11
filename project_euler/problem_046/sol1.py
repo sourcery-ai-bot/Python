@@ -17,13 +17,14 @@ What is the smallest odd composite that cannot be written as the sum of a
 prime and twice a square?
 """
 
+
 from __future__ import annotations
 
 seive = [True] * 100001
 i = 2
-while i * i <= 100000:
+while i ** 2 <= 100000:
     if seive[i]:
-        for j in range(i * i, 100001, i):
+        for j in range(i**2, 100001, i):
             seive[j] = False
     i += 1
 

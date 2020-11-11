@@ -198,7 +198,6 @@ def find_pure_symbols(
     {'A1': True, 'A2': False, 'A3': True, 'A5': False}
     """
     pure_symbols = []
-    assignment = dict()
     literals = []
 
     for clause in clauses:
@@ -213,8 +212,7 @@ def find_pure_symbols(
             s not in literals and sym in literals
         ):
             pure_symbols.append(s)
-    for p in pure_symbols:
-        assignment[p] = None
+    assignment = {p: None for p in pure_symbols}
     for s in pure_symbols:
         sym = s + "'"
         if s in literals:
@@ -263,7 +261,7 @@ def find_unit_clauses(
                     Ncount += 1
             if Fcount == len(clause) - 1 and Ncount == 1:
                 unit_symbols.append(sym)
-    assignment = dict()
+    assignment = {}
     for i in unit_symbols:
         symbol = i[:2]
         assignment[symbol] = len(i) == 2

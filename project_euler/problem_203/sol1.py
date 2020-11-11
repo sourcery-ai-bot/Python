@@ -51,7 +51,7 @@ def get_pascal_triangle_unique_coefficients(depth: int) -> Set[int]:
     """
     coefficients = {1}
     previous_coefficients = [1]
-    for step in range(2, depth + 1):
+    for _ in range(2, depth + 1):
         coefficients_begins_one = previous_coefficients + [0]
         coefficients_ends_one = [0] + previous_coefficients
         previous_coefficients = []
@@ -150,7 +150,7 @@ def get_squarefree(
     {1, 2, 3, 5, 6, 7, 35, 10, 15, 21}
     """
 
-    if len(squared_primes) == 0:
+    if not squared_primes:
         return set()
 
     non_squarefrees = set()

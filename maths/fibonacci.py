@@ -58,15 +58,17 @@ def _check_number_input(n, min_thresh, max_thresh=None):
     :return: boolean
     """
     try:
-        if n >= min_thresh and max_thresh is None:
-            return True
-        elif min_thresh <= n <= max_thresh:
+        if (
+            n >= min_thresh
+            and max_thresh is None
+            or min_thresh <= n <= max_thresh
+        ):
             return True
         elif n < 0:
             raise ValueLessThanZero
         elif n < min_thresh:
             raise ValueTooSmallError
-        elif n > max_thresh:
+        else:
             raise ValueTooLargeError
     except ValueLessThanZero:
         print("Incorrect Input: number must not be less than 0")
@@ -107,12 +109,12 @@ def fib_formula(n):
     :type n:int
     :return: Fibonacci sequence as a list
     """
-    seq_out = [0, 1]
     n = int(n)
     if _check_number_input(n, 2, 1000000):
         sqrt = Decimal(math.sqrt(5))
         phi_1 = Decimal(1 + sqrt) / Decimal(2)
         phi_2 = Decimal(1 - sqrt) / Decimal(2)
+        seq_out = [0, 1]
         for i in range(2, n):
             temp_out = ((phi_1 ** Decimal(i)) - (phi_2 ** Decimal(i))) * (
                 Decimal(sqrt) ** Decimal(-1)

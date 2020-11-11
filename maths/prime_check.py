@@ -18,7 +18,7 @@ def prime_check(number: int) -> bool:
         return False
 
     odd_numbers = range(3, int(math.sqrt(number) + 1), 2)
-    return not any(not number % i for i in odd_numbers)
+    return all(number % i for i in odd_numbers)
 
 
 class Test(unittest.TestCase):

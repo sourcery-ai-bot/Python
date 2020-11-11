@@ -70,7 +70,7 @@ def sieve() -> Generator[int, None, None]:
                 x += factor
             factor_map[x] = factor
         else:
-            factor_map[prime * prime] = prime
+            factor_map[prime**2] = prime
             yield prime
         prime += 1
 

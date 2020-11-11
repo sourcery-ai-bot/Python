@@ -46,10 +46,7 @@ def pigeon_sort(array):
         index = array[i] - min
         if holes[index] != array[i]:
             holes[index] = array[i]
-            holes_repeat[index] += 1
-        else:
-            holes_repeat[index] += 1
-
+        holes_repeat[index] += 1
     # Makes the array back by replacing the numbers.
     index = 0
     for i in range(holes_range):

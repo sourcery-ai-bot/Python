@@ -50,11 +50,7 @@ def solution(n: int = 2000000) -> int:
         if primality_list[i] == 0:
             for j in range(i * i, n + 1, i):
                 primality_list[j] = 1
-    sum_of_primes = 0
-    for i in range(n):
-        if primality_list[i] == 0:
-            sum_of_primes += i
-    return sum_of_primes
+    return sum(i for i in range(n) if primality_list[i] == 0)
 
 
 if __name__ == "__main__":

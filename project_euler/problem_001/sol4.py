@@ -39,11 +39,10 @@ def solution(n: int = 1000) -> int:
             break
     while True:
         result = x * temp
-        if result < n:
-            xmulti.append(result)
-            temp += 1
-        else:
+        if result >= n:
             break
+        xmulti.append(result)
+        temp += 1
     collection = list(set(xmulti + zmulti))
     return sum(collection)
 

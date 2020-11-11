@@ -57,12 +57,10 @@ class DenseLayer:
 
     def cal_gradient(self):
         # activation function may be sigmoid or linear
-        if self.activation == sigmoid:
-            gradient_mat = np.dot(self.output, (1 - self.output).T)
-            gradient_activation = np.diag(np.diag(gradient_mat))
-        else:
-            gradient_activation = 1
-        return gradient_activation
+        if self.activation != sigmoid:
+            return 1
+        gradient_mat = np.dot(self.output, (1 - self.output).T)
+        return np.diag(np.diag(gradient_mat))
 
     def forward_propagation(self, xdata):
         self.xdata = xdata
@@ -128,7 +126,7 @@ class BPNN:
         self.ax_loss.hlines(self.accuracy, 0, self.train_round * 1.1)
 
         x_shape = np.shape(xdata)
-        for round_i in range(train_round):
+        for _ in range(train_round):
             all_loss = 0
             for row in range(x_shape[0]):
                 _xdata = np.asmatrix(xdata[row, :]).T
@@ -139,7 +137,7 @@ class BPNN:
                     _xdata = layer.forward_propagation(_xdata)
 
                 loss, gradient = self.cal_loss(_ydata, _xdata)
-                all_loss = all_loss + loss
+                all_loss += loss
 
                 # back propagation: the input_layer does not upgrade
                 for layer in self.layers[:0:-1]:

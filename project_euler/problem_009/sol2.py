@@ -35,7 +35,7 @@ def solution(n: int = 1000) -> int:
     candidate = 0
     for a in range(1, n // 3):
         # Solving the two equations a**2+b**2=c**2 and a+b+c=N eliminating c
-        b = (n * n - 2 * a * n) // (2 * n - 2 * a)
+        b = (n**2 - 2 * a * n) // (2 * n - 2 * a)
         c = n - a - b
         if c * c == (a * a + b * b):
             candidate = a * b * c

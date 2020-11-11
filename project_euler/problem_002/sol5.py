@@ -40,12 +40,7 @@ def solution(n: int = 4000000) -> int:
         if fib[i + 2] > n:
             break
         i += 1
-    total = 0
-    for j in range(len(fib) - 1):
-        if fib[j] % 2 == 0:
-            total += fib[j]
-
-    return total
+    return sum(fib[j] for j in range(len(fib) - 1) if fib[j] % 2 == 0)
 
 
 if __name__ == "__main__":

@@ -268,10 +268,9 @@ class PokerHand:
         return False
 
     def _is_straight(self) -> bool:
-        for i in range(4):
-            if self._card_values[i] - self._card_values[i + 1] != 1:
-                return False
-        return True
+        return all(
+            self._card_values[i] - self._card_values[i + 1] == 1 for i in range(4)
+        )
 
     def _is_same_kind(self) -> int:
         # Kind Values for internal use:
@@ -292,13 +291,15 @@ class PokerHand:
                 if not val1:
                     val1 = self._card_values[i]
                     kind += 1
-                elif val1 == self._card_values[i]:
+                elif (
+                    val1 == self._card_values[i]
+                    or val2
+                    and val2 == self._card_values[i]
+                ):
                     kind += 2
                 elif not val2:
                     val2 = self._card_values[i]
                     kind += 1
-                elif val2 == self._card_values[i]:
-                    kind += 2
         # For consistency in hand type (look at note in _get_hand_type function)
         kind = kind + 2 if kind in [4, 5] else kind
         # first meaning first pair to compare in 'compare_with'

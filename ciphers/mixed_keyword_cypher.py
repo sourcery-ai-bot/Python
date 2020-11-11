@@ -38,9 +38,9 @@ def mixed_keyword(key: str = "college", pt: str = "UNIVERSITY") -> str:
     r = int(26 / 4)
     # print(r)
     k = 0
-    for i in range(r):
+    for _ in range(r):
         t = []
-        for j in range(len_temp):
+        for _ in range(len_temp):
             t.append(temp[k])
             if not (k < 25):
                 break

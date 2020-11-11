@@ -53,11 +53,10 @@ class Stack:
         """pop the top element off the stack"""
         if self.head is None:
             return None
-        else:
-            temp = self.head.data
-            self.head = self.head.next
-            self.head.prev = None
-            return temp
+        temp = self.head.data
+        self.head = self.head.next
+        self.head.prev = None
+        return temp
 
     def top(self):
         """return the top element of the stack"""

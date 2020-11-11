@@ -43,9 +43,7 @@ def decompress_data(data_bits: str) -> str:
         lexicon[curr_string] = last_match_id + "0"
 
         if math.log2(index).is_integer():
-            newLex = {}
-            for curr_key in list(lexicon):
-                newLex["0" + curr_key] = lexicon.pop(curr_key)
+            newLex = {"0" + curr_key: lexicon.pop(curr_key) for curr_key in list(lexicon)}
             lexicon = newLex
 
         lexicon[bin(index)[2:]] = last_match_id + "1"

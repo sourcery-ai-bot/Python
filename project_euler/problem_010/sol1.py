@@ -28,11 +28,7 @@ def is_prime(n: int) -> bool:
     True
     """
 
-    for i in range(2, int(sqrt(n)) + 1):
-        if n % i == 0:
-            return False
-
-    return True
+    return all(n % i != 0 for i in range(2, int(sqrt(n)) + 1))
 
 
 def solution(n: int = 2000000) -> int:

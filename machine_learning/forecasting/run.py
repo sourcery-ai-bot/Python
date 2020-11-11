@@ -87,8 +87,7 @@ def interquartile_range_checker(train_user: list) -> float:
     q1 = np.percentile(train_user, 25)
     q3 = np.percentile(train_user, 75)
     iqr = q3 - q1
-    low_lim = q1 - (iqr * 0.1)
-    return low_lim
+    return q1 - (iqr * 0.1)
 
 
 def data_safety_checker(list_vote: list, actual_result: float) -> None:
@@ -107,9 +106,9 @@ def data_safety_checker(list_vote: list, actual_result: float) -> None:
             safe = not_safe + 1
         else:
             if abs(abs(i) - abs(actual_result)) <= 0.1:
-                safe = safe + 1
+                safe += 1
             else:
-                not_safe = not_safe + 1
+                not_safe += 1
     print(f"Today's data is {'not ' if safe <= not_safe else ''}safe.")
 
 
@@ -145,10 +144,12 @@ tst_match = total_match[len(total_match) - 1 :]
 
 
 # voting system with forecasting
-res_vote = []
-res_vote.append(
-    linear_regression_prediction(trn_date, trn_user, trn_match, tst_date, tst_match)
-)
+res_vote = [
+    linear_regression_prediction(
+        trn_date, trn_user, trn_match, tst_date, tst_match
+    )
+]
+
 res_vote.append(sarimax_predictor(trn_user, trn_match, tst_match))
 res_vote.append(support_vector_regressor(x_train, x_test, trn_user))
 

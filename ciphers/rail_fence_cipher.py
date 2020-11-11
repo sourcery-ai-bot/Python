@@ -33,9 +33,7 @@ def encrypt(input_string: str, key: int) -> str:
         num = min(num, lowest * 2 - num)  # creates zigzag pattern
         grid[num].append(character)
     grid = ["".join(row) for row in grid]
-    output_string = "".join(grid)
-
-    return output_string
+    return "".join(grid)
 
 
 def decrypt(input_string: str, key: int) -> str:

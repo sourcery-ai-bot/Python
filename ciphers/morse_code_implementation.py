@@ -60,11 +60,7 @@ MORSE_CODE_DICT = {
 def encrypt(message: str) -> str:
     cipher = ""
     for letter in message:
-        if letter != " ":
-            cipher += MORSE_CODE_DICT[letter] + " "
-        else:
-            cipher += "/ "
-
+        cipher += MORSE_CODE_DICT[letter] + " " if letter != " " else "/ "
     # Remove trailing space added on line 64
     return cipher[:-1]
 

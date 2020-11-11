@@ -32,10 +32,10 @@ def isSafe(board, row, column):
     for i, j in zip(range(row, -1, -1), range(column, -1, -1)):
         if board[i][j] == 1:
             return False
-    for i, j in zip(range(row, -1, -1), range(column, len(board))):
-        if board[i][j] == 1:
-            return False
-    return True
+    return all(
+        board[i][j] != 1
+        for i, j in zip(range(row, -1, -1), range(column, len(board)))
+    )
 
 
 def solve(board, row):

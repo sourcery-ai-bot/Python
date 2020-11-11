@@ -49,10 +49,10 @@ def isprime(d: int) -> int:
         return 0
 
     i = 2
-    while i * i <= d:
+    while i ** 2 <= d:
         if d % i == 0:
             return 0
-        i = i + 1
+        i += 1
     return 1
 
 
@@ -73,10 +73,10 @@ def solution(ratio: float = 0.1) -> int:
     primes = 3
 
     while primes / (2 * j - 1) >= ratio:
-        for i in range(j * j + j + 1, (j + 2) * (j + 2), j + 1):
-            primes = primes + isprime(i)
+        for i in range(j**2 + j + 1, (j + 2) * (j + 2), j + 1):
+            primes += isprime(i)
 
-        j = j + 2
+        j += 2
     return j
 
 

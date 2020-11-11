@@ -15,7 +15,7 @@ def quick_sort_3partition(sorting: list, left: int, right: int) -> None:
         else:
             i += 1
     quick_sort_3partition(sorting, left, a - 1)
-    quick_sort_3partition(sorting, b + 1, right)
+    quick_sort_3partition(sorting, b + 1, b)
 
 
 def three_way_radix_quicksort(sorting: list) -> list:

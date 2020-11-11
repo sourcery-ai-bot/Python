@@ -39,11 +39,10 @@ def merge(left_half: List, right_half: List) -> List:
         if left_half[pointer1] < right_half[pointer2]:
             sorted_array[index] = left_half[pointer1]
             pointer1 += 1
-            index += 1
         else:
             sorted_array[index] = right_half[pointer2]
             pointer2 += 1
-            index += 1
+        index += 1
     while pointer1 < len(left_half):
         sorted_array[index] = left_half[pointer1]
         pointer1 += 1

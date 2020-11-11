@@ -13,8 +13,7 @@ def find_min(nums):
     """
     min_num = nums[0]
     for num in nums:
-        if min_num > num:
-            min_num = num
+        min_num = min(min_num, num)
     return min_num
 
 

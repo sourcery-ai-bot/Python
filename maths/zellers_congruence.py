@@ -118,8 +118,8 @@ def zeller(date_input: str) -> str:
 
     # Start math
     if m <= 2:
-        y = y - 1
-        m = m + 12
+        y -= 1
+        m += 12
     # maths var
     c: int = int(str(y)[:2])
     k: int = int(str(y)[2:])

@@ -105,13 +105,13 @@ class Matrix:
     """
 
     def __init__(self, rows):
-        error = TypeError(
-            "Matrices must be formed from a list of zero or more lists containing at "
-            "least one and the same number of values, each of which must be of type "
-            "int or float."
-        )
         if len(rows) != 0:
             cols = len(rows[0])
+            error = TypeError(
+                "Matrices must be formed from a list of zero or more lists containing at "
+                "least one and the same number of values, each of which must be of type "
+                "int or float."
+            )
             if cols == 0:
                 raise error
             for row in rows:
@@ -343,7 +343,7 @@ class Matrix:
                 "Only invertable matrices can be raised to a negative power"
             )
         result = self
-        for i in range(other - 1):
+        for _ in range(other - 1):
             result *= self
         return result
 

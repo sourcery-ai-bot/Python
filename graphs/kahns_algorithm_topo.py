@@ -4,7 +4,6 @@ def topologicalSort(graph):
     using BFS
     """
     indegree = [0] * len(graph)
-    queue = []
     topo = []
     cnt = 0
 
@@ -12,10 +11,7 @@ def topologicalSort(graph):
         for i in values:
             indegree[i] += 1
 
-    for i in range(len(indegree)):
-        if indegree[i] == 0:
-            queue.append(i)
-
+    queue = [i for i in range(len(indegree)) if indegree[i] == 0]
     while queue:
         vertex = queue.pop(0)
         cnt += 1

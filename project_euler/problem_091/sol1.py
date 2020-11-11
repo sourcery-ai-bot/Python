@@ -28,8 +28,8 @@ def is_right(x1: int, y1: int, x2: int, y2: int) -> bool:
     """
     if x1 == y1 == 0 or x2 == y2 == 0:
         return False
-    a_square = x1 * x1 + y1 * y1
-    b_square = x2 * x2 + y2 * y2
+    a_square = x1**2 + y1**2
+    b_square = x2**2 + y2**2
     c_square = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)
     return (
         a_square + b_square == c_square

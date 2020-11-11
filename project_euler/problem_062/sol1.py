@@ -38,8 +38,7 @@ def solution(max_base: int = 5) -> int:
         freqs[digits].append(num)
 
         if len(freqs[digits]) == max_base:
-            base = freqs[digits][0] ** 3
-            return base
+            return freqs[digits][0] ** 3
 
         num += 1
 

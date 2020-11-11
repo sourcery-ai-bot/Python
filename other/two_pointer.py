@@ -47,7 +47,7 @@ def two_pointer(nums: list[int], target: int) -> list[int]:
         if nums[i] + nums[j] == target:
             return [i, j]
         elif nums[i] + nums[j] < target:
-            i = i + 1
+            i += 1
         else:
             j = j - 1
 

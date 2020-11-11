@@ -54,7 +54,7 @@ def solution(n: int = 1000000) -> int:
     13255
     """
 
-    result = max([(len(collatz_sequence(i)), i) for i in range(1, n)])
+    result = max((len(collatz_sequence(i)), i) for i in range(1, n))
     return result[1]
 
 

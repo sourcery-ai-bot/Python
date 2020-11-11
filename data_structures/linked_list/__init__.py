@@ -16,11 +16,10 @@ class LinkedList:
     def remove(self):
         if self.is_empty():
             return None
-        else:
-            item = self.head.item
-            self.head = self.head.next
-            self.size -= 1
-            return item
+        item = self.head.item
+        self.head = self.head.next
+        self.size -= 1
+        return item
 
     def is_empty(self):
         return self.head is None

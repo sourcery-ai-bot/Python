@@ -49,7 +49,7 @@ if __name__ == "__main__":
             break
         except Exception as error:
             print(error)
-    for i in range(token):
+    for _ in range(token):
         rotator()
     for i in decode:
         engine(i)

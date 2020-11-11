@@ -190,10 +190,7 @@ def solution(n: int = 10 ** 15) -> int:
         if dn == n - i:
             break
 
-    a_n = 0
-    for j in range(len(digits)):
-        a_n += digits[j] * 10 ** j
-    return a_n
+    return sum(digits[j] * 10 ** j for j in range(len(digits)))
 
 
 if __name__ == "__main__":

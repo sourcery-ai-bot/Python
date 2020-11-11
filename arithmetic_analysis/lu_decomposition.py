@@ -14,15 +14,11 @@ def LUDecompose(table):
         return []
     for i in range(columns):
         for j in range(i):
-            sum = 0
-            for k in range(j):
-                sum += L[i][k] * U[k][j]
+            sum = sum(L[i][k] * U[k][j] for k in range(j))
             L[i][j] = (table[i][j] - sum) / U[j][j]
         L[i][i] = 1
         for j in range(i, columns):
-            sum1 = 0
-            for k in range(i):
-                sum1 += L[i][k] * U[k][j]
+            sum1 = sum(L[i][k] * U[k][j] for k in range(i))
             U[i][j] = table[i][j] - sum1
     return L, U
 

@@ -28,19 +28,18 @@ class LinkedList:
     def swap_nodes(self, node_data_1, node_data_2):
         if node_data_1 == node_data_2:
             return
-        else:
-            node_1 = self.head
-            while node_1 is not None and node_1.data != node_data_1:
-                node_1 = node_1.next
+        node_1 = self.head
+        while node_1 is not None and node_1.data != node_data_1:
+            node_1 = node_1.next
 
-            node_2 = self.head
-            while node_2 is not None and node_2.data != node_data_2:
-                node_2 = node_2.next
+        node_2 = self.head
+        while node_2 is not None and node_2.data != node_data_2:
+            node_2 = node_2.next
 
-            if node_1 is None or node_2 is None:
-                return
+        if node_1 is None or node_2 is None:
+            return
 
-            node_1.data, node_2.data = node_2.data, node_1.data
+        node_1.data, node_2.data = node_2.data, node_1.data
 
 
 if __name__ == "__main__":

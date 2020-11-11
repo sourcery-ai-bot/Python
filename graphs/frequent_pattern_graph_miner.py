@@ -161,10 +161,8 @@ def construct_graph(cluster, nodes):
             graph[tuple(["Header"])] = [X[i]]
     for i in X:
         graph[tuple(X[i])] = [["Header"]]
-    i = 1
-    while i < max(cluster) - 1:
+    for i in range(1, max(cluster) - 1):
         create_edge(nodes, graph, cluster, i)
-        i = i + 1
     return graph
 
 

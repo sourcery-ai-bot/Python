@@ -77,12 +77,11 @@ class BinarySearchTree:
     def search(self, value):
         if self.empty():
             raise IndexError("Warning: Tree is empty! please use another.")
-        else:
-            node = self.root
-            # use lazy evaluation here to avoid NoneType Attribute error
-            while node is not None and node.value is not value:
-                node = node.left if value < node.value else node.right
-            return node
+        node = self.root
+        # use lazy evaluation here to avoid NoneType Attribute error
+        while node is not None and node.value is not value:
+            node = node.left if value < node.value else node.right
+        return node
 
     def get_max(self, node=None):
         """
@@ -160,7 +159,7 @@ def postorder(curr_node):
     """
     postOrder (left, right, self)
     """
-    node_list = list()
+    node_list = []
     if curr_node is not None:
         node_list = postorder(curr_node.left) + postorder(curr_node.right) + [curr_node]
     return node_list

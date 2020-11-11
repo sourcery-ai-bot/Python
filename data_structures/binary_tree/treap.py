@@ -117,10 +117,9 @@ def inorder(root: Node):
     """
     if not root:  # None
         return
-    else:
-        inorder(root.left)
-        print(root.value, end=",")
-        inorder(root.right)
+    inorder(root.left)
+    print(root.value, end=",")
+    inorder(root.right)
 
 
 def interactTreap(root, args):

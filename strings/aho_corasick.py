@@ -4,11 +4,7 @@ from typing import Dict, List, Union
 
 class Automaton:
     def __init__(self, keywords: List[str]):
-        self.adlist = list()
-        self.adlist.append(
-            {"value": "", "next_states": [], "fail_state": 0, "output": []}
-        )
-
+        self.adlist = [{"value": "", "next_states": [], "fail_state": 0, "output": []}]
         for keyword in keywords:
             self.add_keyword(keyword)
         self.set_fail_transitions()

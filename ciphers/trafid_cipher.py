@@ -3,10 +3,7 @@
 
 def __encryptPart(messagePart: str, character2Number: dict) -> str:
     one, two, three = "", "", ""
-    tmp = []
-
-    for character in messagePart:
-        tmp.append(character2Number[character])
+    tmp = [character2Number[character] for character in messagePart]
 
     for each in tmp:
         one += each[0]
@@ -108,7 +105,7 @@ def decryptMessage(
     for i in range(0, len(message) + 1, period):
         a, b, c = __decryptPart(message[i : i + period], character2Number)
 
-        for j in range(0, len(a)):
+        for j in range(len(a)):
             decrypted_numeric.append(a[j] + b[j] + c[j])
 
     for each in decrypted_numeric:

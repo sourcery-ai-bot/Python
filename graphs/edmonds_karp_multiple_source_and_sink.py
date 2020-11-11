@@ -24,10 +24,7 @@ class FlowNetwork:
         # make fake vertex if there are more
         # than one source or sink
         if len(sources) > 1 or len(sinks) > 1:
-            maxInputFlow = 0
-            for i in sources:
-                maxInputFlow += sum(self.graph[i])
-
+            maxInputFlow = sum(sum(self.graph[i]) for i in sources)
             size = len(self.graph) + 1
             for room in self.graph:
                 room.insert(0, 0)
@@ -113,8 +110,9 @@ class PushRelabelExecutor(MaximumFlowAlgorithmExecutor):
         verticesList = [
             i
             for i in range(self.verticesCount)
-            if i != self.sourceIndex and i != self.sinkIndex
+            if i not in [self.sourceIndex, self.sinkIndex]
         ]
+
 
         # move through list
         i = 0
@@ -160,11 +158,11 @@ class PushRelabelExecutor(MaximumFlowAlgorithmExecutor):
         minHeight = None
         for toIndex in range(self.verticesCount):
             if (
-                self.graph[vertexIndex][toIndex] - self.preflow[vertexIndex][toIndex]
+                self.graph[vertexIndex][toIndex]
+                - self.preflow[vertexIndex][toIndex]
                 > 0
-            ):
-                if minHeight is None or self.heights[toIndex] < minHeight:
-                    minHeight = self.heights[toIndex]
+            ) and (minHeight is None or self.heights[toIndex] < minHeight):
+                minHeight = self.heights[toIndex]
 
         if minHeight is not None:
             self.heights[vertexIndex] = minHeight + 1

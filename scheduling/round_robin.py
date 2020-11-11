@@ -36,7 +36,7 @@ def calculate_waiting_times(burst_times: list[int]) -> list[int]:
                     t += rem_burst_times[i]
                     waiting_times[i] = t - burst_time
                     rem_burst_times[i] = 0
-        if done is True:
+        if done:
             return waiting_times
 
 

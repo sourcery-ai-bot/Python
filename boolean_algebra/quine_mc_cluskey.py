@@ -38,7 +38,7 @@ def check(binary: [str]) -> [str]:
         for i in range(len(binary)):
             if check1[i] == "$":
                 pi.append(binary[i])
-        if len(temp) == 0:
+        if not temp:
             return pi
         binary = list(set(temp))
 
@@ -51,7 +51,7 @@ def decimal_to_binary(no_of_variable: int, minterms: [float]) -> [str]:
     temp = []
     s = ""
     for m in minterms:
-        for i in range(no_of_variable):
+        for _ in range(no_of_variable):
             s = str(m % 2) + s
             m //= 2
         temp.append(s)
@@ -69,14 +69,8 @@ def is_for_table(string1: str, string2: str, count: int) -> bool:
     """
     l1 = list(string1)
     l2 = list(string2)
-    count_n = 0
-    for i in range(len(l1)):
-        if l1[i] != l2[i]:
-            count_n += 1
-    if count_n == count:
-        return True
-    else:
-        return False
+    count_n = sum(1 for i in range(len(l1)) if l1[i] != l2[i])
+    return count_n == count
 
 
 def selection(chart: [[int]], prime_implicants: [str]) -> [str]:

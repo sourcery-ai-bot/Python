@@ -1,17 +1,13 @@
 # Finding longest distance in Directed Acyclic Graph using KahnsAlgorithm
 def longestDistance(graph):
     indegree = [0] * len(graph)
-    queue = []
     longDist = [1] * len(graph)
 
     for key, values in graph.items():
         for i in values:
             indegree[i] += 1
 
-    for i in range(len(indegree)):
-        if indegree[i] == 0:
-            queue.append(i)
-
+    queue = [i for i in range(len(indegree)) if indegree[i] == 0]
     while queue:
         vertex = queue.pop(0)
         for x in graph[vertex]:

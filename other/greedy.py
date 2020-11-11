@@ -21,10 +21,7 @@ class things:
 
 
 def build_menu(name, value, weight):
-    menu = []
-    for i in range(len(value)):
-        menu.append(things(name[i], value[i], weight[i]))
-    return menu
+    return [things(name[i], value[i], weight[i]) for i in range(len(value))]
 
 
 def greedy(item, maxCost, keyFunc):

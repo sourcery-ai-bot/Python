@@ -45,11 +45,9 @@ def sort(a, N, up):
 
 if __name__ == "__main__":
 
-    a = []
-
     n = int(input().strip())
-    for i in range(n):
-        a.append(int(input().strip()))
+    a = [int(input().strip()) for _ in range(n)]
+
     up = 1
 
     sort(a, n, up)

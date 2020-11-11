@@ -21,9 +21,7 @@ def ucal(u, p):
 
 def main():
     n = int(input("enter the numbers of values: "))
-    y = []
-    for i in range(n):
-        y.append([])
+    y = [[] for _ in range(n)]
     for i in range(n):
         for j in range(n):
             y[i].append(j)

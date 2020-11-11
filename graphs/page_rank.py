@@ -31,20 +31,17 @@ class Node:
 
 
 def page_rank(nodes, limit=3, d=0.85):
-    ranks = {}
-    for node in nodes:
-        ranks[node.name] = 1
-
-    outbounds = {}
-    for node in nodes:
-        outbounds[node.name] = len(node.outbound)
-
+    ranks = {node.name: 1 for node in nodes}
+    outbounds = {node.name: len(node.outbound) for node in nodes}
     for i in range(limit):
         print(f"======= Iteration {i + 1} =======")
         for j, node in enumerate(nodes):
-            ranks[node.name] = (1 - d) + d * sum(
-                [ranks[ib] / outbounds[ib] for ib in node.inbound]
+            ranks[node.name] = (
+                1
+                - d
+                + d * sum(ranks[ib] / outbounds[ib] for ib in node.inbound)
             )
+
         print(ranks)
 
 

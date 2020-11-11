@@ -79,7 +79,7 @@ class SkipList(Generic[KT, VT]):
 
         items = list(self)
 
-        if len(items) == 0:
+        if not items:
             return f"SkipList(level={self.level})"
 
         label_size = max((len(str(item)) for item in items), default=4)
@@ -206,7 +206,7 @@ class SkipList(Generic[KT, VT]):
 
             if level > self.level:
                 # After level increase we have to add additional nodes to head.
-                for i in range(self.level - 1, level):
+                for _ in range(self.level - 1, level):
                     update_vector.append(self.head)
                 self.level = level
 
@@ -408,7 +408,7 @@ def test_iter_always_yields_sorted_values():
 
 
 def pytests():
-    for i in range(100):
+    for _ in range(100):
         # Repeat test 100 times due to the probabilistic nature of skip list
         # random values == random bugs
         test_insert()

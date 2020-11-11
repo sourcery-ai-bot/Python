@@ -33,7 +33,7 @@ def oeProcess(position, value, LSend, RSend, LRcv, RRcv, resultPipe):
     # we perform n swaps since after n swaps we know we are sorted
     # we *could* stop early if we are sorted already, but it takes as long to
     # find out we are sorted as it does to sort the list with this algorithm
-    for i in range(0, 10):
+    for i in range(10):
 
         if (i + position) % 2 == 0 and RSend is not None:
             # send your value to your right neighbor

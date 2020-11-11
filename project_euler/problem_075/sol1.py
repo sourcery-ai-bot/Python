@@ -53,7 +53,7 @@ def solution(limit: int = 1500000) -> int:
             for perimeter in range(primitive_perimeter, limit + 1, primitive_perimeter):
                 frequencies[perimeter] += 1
         euclid_m += 1
-    return sum(1 for frequency in frequencies.values() if frequency == 1)
+    return frequencies.values().count(1)
 
 
 if __name__ == "__main__":

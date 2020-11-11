@@ -169,13 +169,12 @@ class RedBlackTree:
                         if self.parent is None:
                             # The tree is now empty
                             return RedBlackTree(None)
+                        self._remove_repair()
+                        if self.is_left():
+                            self.parent.left = None
                         else:
-                            self._remove_repair()
-                            if self.is_left():
-                                self.parent.left = None
-                            else:
-                                self.parent.right = None
-                            self.parent = None
+                            self.parent.right = None
+                        self.parent = None
                     else:
                         # This node is black and its child is red
                         # Move the child node here and make it black
@@ -299,14 +298,11 @@ class RedBlackTree:
         """A helper function to recursively check Property 4 of a
         Red-Black Tree. See check_color_properties for more info.
         """
-        if self.color == 1:
-            if color(self.left) == 1 or color(self.right) == 1:
-                return False
+        if self.color == 1 and (color(self.left) == 1 or color(self.right) == 1):
+            return False
         if self.left and not self.left.check_coloring():
             return False
-        if self.right and not self.right.check_coloring():
-            return False
-        return True
+        return bool(not self.right or self.right.check_coloring())
 
     def black_height(self) -> int:
         """Returns the number of black nodes from this node to the
@@ -537,9 +533,7 @@ def test_rotations() -> bool:
     right_rot.right.right = RedBlackTree(10, parent=right_rot.right)
     right_rot.right.right.left = RedBlackTree(5, parent=right_rot.right.right)
     right_rot.right.right.right = RedBlackTree(20, parent=right_rot.right.right)
-    if tree != right_rot:
-        return False
-    return True
+    return tree == right_rot
 
 
 def test_insertion_speed() -> bool:
@@ -610,9 +604,7 @@ def test_insert_delete() -> bool:
     tree = tree.remove(9)
     if not tree.check_color_properties():
         return False
-    if list(tree.inorder_traverse()) != [-8, 0, 4, 8, 10, 11, 12]:
-        return False
-    return True
+    return list(tree.inorder_traverse()) == [-8, 0, 4, 8, 10, 11, 12]
 
 
 def test_floor_ceil() -> bool:
@@ -625,10 +617,10 @@ def test_floor_ceil() -> bool:
     tree.insert(20)
     tree.insert(22)
     tuples = [(-20, None, -16), (-10, -16, 0), (8, 8, 8), (50, 24, None)]
-    for val, floor, ceil in tuples:
-        if tree.floor(val) != floor or tree.ceil(val) != ceil:
-            return False
-    return True
+    return not any(
+        tree.floor(val) != floor or tree.ceil(val) != ceil
+        for val, floor, ceil in tuples
+    )
 
 
 def test_min_max() -> bool:
@@ -640,9 +632,7 @@ def test_min_max() -> bool:
     tree.insert(24)
     tree.insert(20)
     tree.insert(22)
-    if tree.get_max() != 22 or tree.get_min() != -16:
-        return False
-    return True
+    return tree.get_max() == 22 and tree.get_min() == -16
 
 
 def test_tree_traversal() -> bool:
@@ -658,9 +648,7 @@ def test_tree_traversal() -> bool:
         return False
     if list(tree.preorder_traverse()) != [0, -16, 16, 8, 22, 20, 24]:
         return False
-    if list(tree.postorder_traverse()) != [-16, 8, 20, 24, 22, 16, 0]:
-        return False
-    return True
+    return list(tree.postorder_traverse()) == [-16, 8, 20, 24, 22, 16, 0]
 
 
 def test_tree_chaining() -> bool:
@@ -671,9 +659,7 @@ def test_tree_chaining() -> bool:
         return False
     if list(tree.preorder_traverse()) != [0, -16, 16, 8, 22, 20, 24]:
         return False
-    if list(tree.postorder_traverse()) != [-16, 8, 20, 24, 22, 16, 0]:
-        return False
-    return True
+    return list(tree.postorder_traverse()) == [-16, 8, 20, 24, 22, 16, 0]
 
 
 def print_results(msg: str, passes: bool) -> None:

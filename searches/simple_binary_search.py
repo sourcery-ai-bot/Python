@@ -40,7 +40,7 @@ def binary_search(a_list: list[int], item: int) -> bool:
     >>> binary_search(range(0, 10000, 5), 2)
     False
     """
-    if len(a_list) == 0:
+    if not a_list:
         return False
     midpoint = len(a_list) // 2
     if a_list[midpoint] == item:

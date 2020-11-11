@@ -46,8 +46,7 @@ def solution(num: int = 100) -> int:
     1
     """
     nfact = factorial(num)
-    result = split_and_add(nfact)
-    return result
+    return split_and_add(nfact)
 
 
 if __name__ == "__main__":

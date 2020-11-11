@@ -72,17 +72,16 @@ def count_inversions_recursive(arr):
     """
     if len(arr) <= 1:
         return arr, 0
-    else:
-        mid = len(arr) // 2
-        P = arr[0:mid]
-        Q = arr[mid:]
+    mid = len(arr) // 2
+    P = arr[0:mid]
+    Q = arr[mid:]
 
-        A, inversion_p = count_inversions_recursive(P)
-        B, inversions_q = count_inversions_recursive(Q)
-        C, cross_inversions = _count_cross_inversions(A, B)
+    A, inversion_p = count_inversions_recursive(P)
+    B, inversions_q = count_inversions_recursive(Q)
+    C, cross_inversions = _count_cross_inversions(A, B)
 
-        num_inversions = inversion_p + inversions_q + cross_inversions
-        return C, num_inversions
+    num_inversions = inversion_p + inversions_q + cross_inversions
+    return C, num_inversions
 
 
 def _count_cross_inversions(P, Q):

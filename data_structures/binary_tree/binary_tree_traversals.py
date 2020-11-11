@@ -68,7 +68,7 @@ def level_order_1(root: Node):
         return
     temp = root
     que = [temp]
-    while len(que) > 0:
+    while que:
         print(que[0].data, end=" ")
         temp = que.pop(0)
         if temp.left:
